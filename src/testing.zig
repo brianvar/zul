@@ -17,8 +17,8 @@ pub fn expectEqual(expected: anytype, actual: anytype) !void {
             return expectStrings(expected, actual);
         },
         .@"struct" => |structType| {
-            inline for (structType.fields) |field| {
-                try expectEqual(@field(expected, field.name), @field(actual, field.name));
+            inline for (structType.field_names) |field_name| {
+                try expectEqual(@field(expected, field_name), @field(actual, field_name));
             }
             return;
         },

@@ -23,7 +23,7 @@ pub fn Scheduler(comptime T: type, comptime C: type) type {
         alloc: Allocator,
 
         const Q = std.PriorityQueue(Job(T), void, compare);
-        const include_scheduler = @typeInfo(@TypeOf(T.run)).@"fn".params.len == 4;
+        const include_scheduler = @typeInfo(@TypeOf(T.run)).@"fn".param_types.len == 4;
 
         fn compare(_: void, a: Job(T), b: Job(T)) std.math.Order {
             return std.math.order(a.at, b.at);
